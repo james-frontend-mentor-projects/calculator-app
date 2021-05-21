@@ -1,35 +1,25 @@
-import { useContext, useEffect, useRef } from "react";
-import ThemeContext from "../contexts/themeContext";
+import { CSSProperties, useContext, useEffect, useRef } from "react";
+import ThemeContext, { Theme } from "../../contexts/themeContext";
+import { ClickableLabel } from "./ClickableLabel";
+import { ConcealedRadio } from "./ConcealedRadio";
 
-interface ConcealedRadioProps {
-  value: number;
-  selected: number;
-  handleChange: Function;
+function switchStyle(theme: Theme): CSSProperties {
+  switch (theme) {
+    case 1:
+      return {
+        left: 5,
+      };
+    case 2:
+      return {
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+      };
+    case 3:
+      return {
+        right: 5,
+      };
+  }
 }
-const ConcealedRadio = ({ value, selected, handleChange }: ConcealedRadioProps) => {
-  return (
-    <input
-      onChange={() => handleChange(value)}
-      type="radio"
-      className="hidden"
-      name="switch"
-      checked={value === selected}
-    />
-  );
-};
-
-interface ClickableLabelProps {
-  value: number;
-  handleChange: Function;
-  textColor: string;
-}
-const ClickableLabel = ({ value, handleChange, textColor }: ClickableLabelProps) => {
-  return (
-    <label className={`text-text-${textColor}`} onClick={() => handleChange(value)}>
-      {value}
-    </label>
-  );
-};
 
 interface SelectorProps {
   textColor: string;
@@ -77,26 +67,7 @@ export const CalculatorThemeSelector = ({ textColor }: SelectorProps) => {
           ))}
         </div>
         <div className="toggle-selection-wrapper bg-background-keypad" ref={ref}>
-          <div
-            className="toggle-selection bg-keys-secondary"
-            style={(() => {
-              switch (theme) {
-                case 1:
-                  return {
-                    left: 5,
-                  };
-                case 2:
-                  return {
-                    left: "50%",
-                    transform: "translate(-50%, -50%)",
-                  };
-                case 3:
-                  return {
-                    right: 5,
-                  };
-              }
-            })()}
-          ></div>
+          <div className="toggle-selection bg-keys-secondary" style={switchStyle(theme)}></div>
         </div>
       </div>
     </div>

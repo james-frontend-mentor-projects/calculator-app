@@ -5,7 +5,7 @@ import { CalculatorScreen } from "./CalculatorScreen";
 
 export type Calculation = "+" | "-" | "x" | "/" | "=" | ".";
 export const MAX_INPUT_LENGTH = 10;
-export const BASE_RESULT = "ZERO";
+export const BASE_RESULT = "ZERO"; // differentiate from natural 0
 
 export const Calculator = () => {
   const [underlyingResult, setUnderlyingResult] = useState<string>(BASE_RESULT);
@@ -32,9 +32,10 @@ export const Calculator = () => {
   function calculate(calculationToPerform: Calculation): string {
     try {
       if (calculationToPerform === "=") {
-        return action ? calculate(action) : ongoingNumber;
+        return action ? calculate(action) : underlyingResult === BASE_RESULT ? ongoingNumber : underlyingResult;
       }
       if (ongoingNumber !== BASE_RESULT && underlyingResult !== BASE_RESULT) {
+        setAction(null);
         if (calculationToPerform === "+") {
           return (parseFloat(underlyingResult) + parseFloat(ongoingNumber)).toString();
         }
@@ -58,40 +59,53 @@ export const Calculator = () => {
       case "+": {
         setAction("+");
         const res = calculate("+");
-        setUnderlyingResult(res);
+        if (res !== BASE_RESULT) {
+          setOngoingNumber(BASE_RESULT);
+          setUnderlyingResult(res);
+        }
         setDisplayedValue(BASE_RESULT);
         break;
       }
       case "-": {
         setAction("-");
         const res = calculate("-");
-        setUnderlyingResult(res);
+        if (res !== BASE_RESULT) {
+          setOngoingNumber(BASE_RESULT);
+          setUnderlyingResult(res);
+        }
         setDisplayedValue(BASE_RESULT);
         break;
       }
       case "x": {
         setAction("x");
         const res = calculate("x");
-        setUnderlyingResult(res);
+        if (res !== BASE_RESULT) {
+          setOngoingNumber(BASE_RESULT);
+          setUnderlyingResult(res);
+        }
         setDisplayedValue(BASE_RESULT);
         break;
       }
       case "/": {
         setAction("/");
         const res = calculate("/");
-        setUnderlyingResult(res);
+        if (res !== BASE_RESULT) {
+          setOngoingNumber(BASE_RESULT);
+          setUnderlyingResult(res);
+        }
         setDisplayedValue(BASE_RESULT);
         break;
       }
       case "=": {
         const res = calculate("=");
+        setOngoingNumber(BASE_RESULT);
+        setUnderlyingResult(res);
         setDisplayedValue(res);
         break;
       }
       case ".": {
         if (!ongoingNumber.includes(".")) {
-          const newValue = `${displayedValue}.`;
-          console.log(newValue);
+          const newValue = displayedValue === BASE_RESULT ? "0." : `${displayedValue}.`;
           setOngoingNumber(newValue);
           setDisplayedValue(newValue);
         }

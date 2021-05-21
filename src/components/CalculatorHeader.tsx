@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import ThemeContext from "../contexts/themeContext";
-import { CalculatorThemeSelector } from "./CalculatorThemeSelector";
+import { CalculatorThemeSelector } from "./themeSelector/CalculatorThemeSelector";
 
 export const CalculatorHeader = () => {
   const { theme } = useContext(ThemeContext);
