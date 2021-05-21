@@ -1,0 +1,19 @@
+@use "../abstracts" as *;
+
+@each $group, $shade in $colors {
+  @each $color, $value in $shade {
+    @each $theme, $x in $value {
+      .theme-#{$theme} .text-#{$group}-#{$color} {
+        color: var(--clr-#{$group}-#{$color}-#{$theme}) !important;
+      }
+
+      .theme-#{$theme} .bg-#{$group}-#{$color} {
+        background-color: var(--clr-#{$group}-#{$color}-#{$theme}) !important;
+      }
+
+      .theme-#{$theme} .shadow-#{$group}-#{$color} {
+        box-shadow: inset 0 -5px 0 0 var(--clr-#{$group}-#{$color}-#{$theme}) !important;
+      }
+    }
+  }
+}

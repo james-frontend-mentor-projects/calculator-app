@@ -1,0 +1,11 @@
+@use '../abstracts' as *;
+
+:root {
+  @each $group, $shade in $colors {
+    @each $color, $value in $shade {
+      @each $theme, $x in $value {
+        --clr-#{$group}-#{$color}-#{$theme}: #{$x};
+      }
+    }
+  }
+}
