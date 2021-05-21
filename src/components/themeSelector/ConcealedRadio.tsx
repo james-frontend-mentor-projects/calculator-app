@@ -9,7 +9,8 @@ export const ConcealedRadio = ({ value, selected, handleChange }: ConcealedRadio
       onChange={() => handleChange(value)}
       type="radio"
       className="hidden"
-      name="switch"
+      id={`theme-${value}`}
+      name={`theme-${value}`}
       checked={value === selected}
     />
   );

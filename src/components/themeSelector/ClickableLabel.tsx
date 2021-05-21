@@ -5,7 +5,7 @@ interface ClickableLabelProps {
 }
 export const ClickableLabel = ({ value, handleChange, textColor }: ClickableLabelProps) => {
   return (
-    <label className={`text-text-${textColor}`} onClick={() => handleChange(value)}>
+    <label htmlFor={`theme-${value}`} className={`text-text-${textColor}`} onClick={() => handleChange(value)}>
       {value}
     </label>
   );
