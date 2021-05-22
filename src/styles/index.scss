@@ -5,12 +5,7 @@
 $border-radius: 10px;
 
 @mixin full-height() {
-  min-height: -webkit-fill-available;
   min-height: 100vh;
-}
-
-html {
-  height: -webkit-fill-available;
 }
 
 main {
