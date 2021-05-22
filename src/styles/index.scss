@@ -4,16 +4,24 @@
 
 $border-radius: 10px;
 
+@mixin full-height() {
+  min-height: -webkit-fill-available;
+  min-height: 100vh;
+}
+
+html {
+  height: -webkit-fill-available;
+}
+
 main {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  @include full-height;
   display: grid;
   place-items: center;
 }
 
 .container {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
   max-width: 500px;
   max-height: 700px;
   padding: 1.5rem;
@@ -65,7 +73,7 @@ header {
   &:active {
     filter: brightness(70%);
     transform: translateY(2px);
-    box-shadow: none !important;
+    box-shadow: none;
   }
 
   &:hover {
