@@ -4,13 +4,9 @@
 
 $border-radius: 10px;
 
-@mixin full-height() {
-  min-height: 100vh;
-}
-
 main {
   width: 100%;
-  @include full-height;
+  height: 100vh;
   display: grid;
   place-items: center;
 }
@@ -20,8 +16,7 @@ main {
   max-width: 30rem;
   max-height: 40rem;
   padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
+  display: grid;
   gap: 1.5rem;
 }
 
