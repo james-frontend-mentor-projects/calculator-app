@@ -13,12 +13,10 @@ main {
 
 .container {
   width: 100vw;
-  height: 100vh;
-  max-width: 500px;
-  max-height: 700px;
+  max-width: 30rem;
+  max-height: 40rem;
   padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
+  display: grid;
   gap: 1.5rem;
 }
 
@@ -65,7 +63,7 @@ header {
   &:active {
     filter: brightness(70%);
     transform: translateY(2px);
-    box-shadow: none !important;
+    box-shadow: none;
   }
 
   &:hover {
@@ -149,7 +147,8 @@ header {
 }
 
 .theme-selector {
-  display: flex;
+  display: grid;
+  grid-auto-flow: column;
   font-size: 0.8rem;
   gap: 1rem;
 
@@ -164,7 +163,8 @@ header {
   flex-direction: column;
 
   &-container {
-    display: flex;
+    display: grid;
+    grid-auto-flow: column;
     justify-content: center;
     align-items: center;
     gap: 0.5rem;
@@ -179,7 +179,6 @@ header {
 
   &-selection-wrapper {
     flex-grow: 1;
-    // padding: 0.2rem;
     position: relative;
     border-radius: 9999px;
   }
